@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SEYTRONS VPN</title>
+    <link rel="stylesheet" href="framing/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Responsive Desktop Container -->
+    <div class="desktop-container">
+
+        <!-- Side Navigation Menu -->
+        <div class="side-menu" id="sideMenu">
+            <div class="menu-header">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <div class="user-info">
+                        <h3>User1234</h3>
+                        <p>Premium Member</p>
+                    </div>
+                    <button class="close-menu" id="closeMenu">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="menu-items">
+                <a href="#" class="menu-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-server"></i>
+                    <span>Server Locations</span>
+                    <span class="badge">28</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Security Settings</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Usage Analytics</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-bolt"></i>
+                    <span>Speed Test</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-user-lock"></i>
+                    <span>Privacy Tools</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-history"></i>
+                    <span>Connection Logs</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Advanced Settings</span>
+                </a>
+            </div>
+
+            <div class="menu-footer">
+                <div class="storage-info">
+                    <div class="storage-bar">
+                        <div class="storage-fill" style="width: 65%"></div>
+                    </div>
+                    <p>Data: 65GB / 100GB used</p>
+                </div>
+                <button class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main App Container -->
+        <div class="app-container" id="appContainer">
+            <!-- Header -->
+            <header>
+                <div class="menu-icon" id="menuToggle">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <div class="logo">
+                    <h1><i class="fas fa-satellite-dish"></i> SEYTRONS</h1>
+                    <p class="tagline">Secure VPN Pro</p>
+                </div>
+                <div class="header-actions">
+                    <button class="notification-btn" id="notificationBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="connection-indicator">
+                        <div class="indicator-dot"></div>
+                        <span>VPN</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon speed">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-label">Download</span>
+                            <span class="stat-value">287 Mbps</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon ping">
+                            <i class="fas fa-signal"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-label">Ping</span>
+                            <span class="stat-value">24 ms</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon data">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-label">Data Today</span>
+                            <span class="stat-value">2.4 GB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Connection Status -->
+                <div class="connection-card">
+                    <div class="connection-header">
+                        <h2><i class="fas fa-plug"></i> Current Connection</h2>
+                        <div class="connection-time">
+                            <i class="far fa-clock"></i>
+                            <span id="connectionTimer">00:00:00</span>
+                        </div>
+                    </div>
+
+                    <div class="connection-details">
+                        <div class="server-info">
+                            <div class="flag uganda"></div>
+                            <div class="server-text">
+                                <h3>Kampala, Uganda</h3>
+                                <p>Server: UG-204 • Recommended</p>
+                            </div>
+                            <div class="server-status">
+                                <div class="status-badge active">Active</div>
+                                <div class="load-indicator">
+                                    <i class="fas fa-circle"></i>
+                                    <span>42% load</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="encryption-info">
+                            <div class="encryption-item">
+                                <i class="fas fa-lock"></i>
+                                <span>AES-256 Encryption</span>
+                            </div>
+                            <div class="encryption-item">
+                                <i class="fas fa-user-secret"></i>
+                                <span>No Logs Policy</span>
+                            </div>
+                            <div class="encryption-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Kill Switch Active</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VPN Portal -->
+                <div class="vpn-portal-section">
+                    <div class="portal-container">
+                        <div class="portal-glow"></div>
+                        <div class="portal-rings">
+                            <div class="ring ring-1"></div>
+                            <div class="ring ring-2"></div>
+                            <div class="ring ring-3"></div>
+                        </div>
+                        <div class="portal-center" id="portalCenter">
+                            <div class="center-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="center-status" id="centerStatus">
+                                <span class="status-text">SECURE</span>
+                                <span class="status-sub">Tap to Connect</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vpn-controls">
+                        <button class="vpn-btn connect-btn" id="vpnConnectBtn">
+                            <div class="btn-icon">
+                                <i class="fas fa-power-off"></i>
+                            </div>
+                            <div class="btn-text">
+                                <span class="btn-title">Connect VPN</span>
+                                <span class="btn-sub">Tap to secure connection</span>
+                            </div>
+                        </button>
+
+                        <div class="quick-actions">
+                            <button class="quick-btn" id="quickConnect">
+                                <i class="fas fa-bolt"></i>
+                                <span>Quick Connect</span>
+                            </button>
+                            <button class="quick-btn" id="changeServer">
+                                <i class="fas fa-random"></i>
+                                <span>Change Server</span>
+                            </button>
+                            <button class="quick-btn" id="speedTest">
+                                <i class="fas fa-running"></i>
+                                <span>Test Speed</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Features -->
+                <div class="features-section">
+                    <h3><i class="fas fa-star"></i> Advanced Features</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon threat">
+                                <i class="fas fa-virus-slash"></i>
+                            </div>
+                            <h4>Threat Protection</h4>
+                            <p>Block malware & trackers</p>
+                            <div class="feature-toggle">
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon split">
+                                <i class="fas fa-code-branch"></i>
+                            </div>
+                            <h4>Split Tunneling</h4>
+                            <p>Choose apps for VPN</p>
+                            <div class="feature-toggle">
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon dns">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h4>Private DNS</h4>
+                            <p>Encrypted DNS queries</p>
+                            <div class="feature-toggle">
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon auto">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h4>Auto-Connect</h4>
+                            <p>Connect on untrusted WiFi</p>
+                            <div class="feature-toggle">
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="activity-section">
+                    <div class="activity-header">
+                        <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                        <button class="view-all">View All</button>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon success">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="activity-details">
+                                <p>Connected to USA server</p>
+                                <span class="activity-time">10 minutes ago</span>
+                            </div>
+                            <span class="activity-duration">45m</span>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="activity-details">
+                                <p>Blocked phishing attempt</p>
+                                <span class="activity-time">1 hour ago</span>
+                            </div>
+                            <span class="activity-tag">Security</span>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon info">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="activity-details">
+                                <p>Speed test completed</p>
+                                <span class="activity-time">2 hours ago</span>
+                            </div>
+                            <span class="activity-speed">287 Mbps</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Fixed Footer Navigation -->
+            <footer class="app-footer">
+                <div class="footer-time">
+                    <i class="far fa-clock"></i>
+                    <span id="footerTime">00:00</span>
+                </div>
+
+                <nav class="footer-nav">
+                    <a href="#" class="nav-item active">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-server"></i>
+                        <span>Servers</span>
+                    </a>
+                    <a href="#" class="nav-item center-nav" id="quickActionBtn">
+                        <div class="nav-center-icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Security</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </a>
+                </nav>
+
+                <div class="footer-battery">
+                    <i class="fas fa-battery-three-quarters"></i>
+                    <span>85%</span>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Notification Panel -->
+        <div class="notification-panel" id="notificationPanel">
+            <div class="notification-header">
+                <h3>Notifications</h3>
+                <button class="close-notifications" id="closeNotifications">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="notification-list">
+                <div class="notification-item unread">
+                    <div class="notification-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="notification-content">
+                        <p>Security Alert: Suspicious activity blocked</p>
+                        <span>Just now</span>
+                    </div>
+                </div>
+                <div class="notification-item unread">
+                    <div class="notification-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="notification-content">
+                        <p>Server optimized for better speed</p>
+                        <span>30 minutes ago</span>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="notification-content">
+                        <p>Premium features unlocked for 7 days</p>
+                        <span>2 hours ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Action Menu -->
+        <div class="quick-action-menu" id="quickActionMenu">
+            <div class="action-header">
+                <h3>Quick Actions</h3>
+            </div>
+            <div class="action-items">
+                <button class="action-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Secure All Apps</span>
+                </button>
+                <button class="action-item">
+                    <i class="fas fa-user-secret"></i>
+                    <span>Incognito Mode</span>
+                </button>
+                <button class="action-item">
+                    <i class="fas fa-wifi"></i>
+                    <span>WiFi Protection</span>
+                </button>
+                <button class="action-item">
+                    <i class="fas fa-history"></i>
+                    <span>Clear Logs</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Connection Animation Overlay -->
+        <div class="connection-overlay" id="connectionOverlay">
+            <div class="overlay-content">
+                <div class="connecting-animation">
+                    <div class="spinner"></div>
+                    <div class="spinner-ring"></div>
+                </div>
+                <h2 id="overlayTitle">Connecting to VPN</h2>
+                <p id="overlayMessage">Establishing secure connection...</p>
+                <div class="connection-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- End of desktop-container -->
+
+    <script src="framing/script.js"></script>
+</body>
+
+</html>
