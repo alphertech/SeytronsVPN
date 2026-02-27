@@ -4,455 +4,860 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SEYTRONS VPN</title>
-    <link rel="stylesheet" href="framing/styles.css">
+    <title>SEYTRONS VPN - Secure & Private</title>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="framing/styles.css">
 </head>
 
 <body>
-    <!-- Responsive Desktop Container -->
-    <div class="desktop-container">
-
-        <!-- Side Navigation Menu -->
-        <div class="side-menu" id="sideMenu">
-            <div class="menu-header">
-                <div class="user-profile">
-                    <div class="avatar">
-                        <i class="fas fa-user-astronaut"></i>
-                    </div>
-                    <div class="user-info">
-                        <h3>User1234</h3>
-                        <p>Premium Member</p>
-                    </div>
-                    <button class="close-menu" id="closeMenu">
-                        <i class="fas fa-times"></i>
-                    </button>
+    <div class="app">
+        <!-- SCREEN 1: SPLASH SCREEN -->
+        <div class="splash-screen" id="splashScreen">
+            <div class="splash-content">
+                <div class="splash-logo">
+                    <i class="fas fa-shield-halved"></i>
                 </div>
-            </div>
-
-            <div class="menu-items">
-                <a href="#" class="menu-item active">
-                    <i class="fas fa-home"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-server"></i>
-                    <span>Server Locations</span>
-                    <span class="badge">28</span>
-                </a>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>Security Settings</span>
-                </a>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Usage Analytics</span>
-                </a>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-bolt"></i>
-                    <span>Speed Test</span>
-                </a>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-user-lock"></i>
-                    <span>Privacy Tools</span>
-                </a>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-history"></i>
-                    <span>Connection Logs</span>
-                </a>
-                <a href="#" class="menu-item">
-                    <i class="fas fa-cog"></i>
-                    <span>Advanced Settings</span>
-                </a>
-            </div>
-
-            <div class="menu-footer">
-                <div class="storage-info">
-                    <div class="storage-bar">
-                        <div class="storage-fill" style="width: 65%"></div>
-                    </div>
-                    <p>Data: 65GB / 100GB used</p>
-                </div>
-                <button class="logout-btn">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span>
-                </button>
+                <h1>SEYTRONS</h1>
+                <p class="version">Version 2.4.1</p>
+                <div class="splash-spinner"></div>
+                <p class="splash-status" id="splashStatus">Initializing...</p>
             </div>
         </div>
 
-        <!-- Main App Container -->
-        <div class="app-container" id="appContainer">
-            <!-- Header -->
-            <header>
-                <div class="menu-icon" id="menuToggle">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
+        <!-- SCREEN 2: ONBOARDING (3 Slides) -->
+        <div class="onboarding-screen" id="onboardingScreen">
+            <button class="skip-btn" id="skipOnboarding">Skip</button>
+
+            <div class="onboarding-slider" id="onboardingSlider">
+                <!-- Slide 1: Privacy -->
+                <div class="onboarding-slide active">
+                    <div class="slide-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h2>Complete Privacy</h2>
+                    <p>Hide your IP address and browse anonymously. No one can track your online activities.</p>
                 </div>
-                <div class="logo">
-                    <h1><i class="fas fa-satellite-dish"></i> SEYTRONS</h1>
-                    <p class="tagline">Secure VPN Pro</p>
+
+                <!-- Slide 2: Security -->
+                <div class="onboarding-slide">
+                    <div class="slide-icon">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h2>Military-Grade Security</h2>
+                    <p>AES-256 encryption with strict no-logs policy. Your data stays yours.</p>
                 </div>
-                <div class="header-actions">
-                    <button class="notification-btn" id="notificationBtn">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">3</span>
+
+                <!-- Slide 3: Speed -->
+                <div class="onboarding-slide">
+                    <div class="slide-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h2>Lightning Fast</h2>
+                    <p>24 servers worldwide with unlimited bandwidth. No speed caps.</p>
+                </div>
+
+                <!-- Slide 4: Get Started -->
+                <div class="onboarding-slide">
+                    <div class="slide-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h2>Ready to Go?</h2>
+                    <p>Join millions who trust SEYTRONS for their online privacy.</p>
+                </div>
+            </div>
+
+            <div class="onboarding-dots" id="onboardingDots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+
+            <div class="onboarding-footer">
+                <button class="next-btn" id="nextOnboarding">Next</button>
+                <div class="legal-links">
+                    <a href="#">Terms</a>
+                    <span>•</span>
+                    <a href="#">Privacy</a>
+                    <span>•</span>
+                    <a href="#">Restore</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN APP CONTAINER -->
+        <div class="main-app" id="mainApp">
+            <!-- SIDEBAR MENU (Navigation Drawer) -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <div class="logo">
+                        <i class="fas fa-shield-halved"></i>
+                        <span>SEYTRONS</span>
+                    </div>
+                    <button class="close-sidebar" id="closeSidebar">
+                        <i class="fas fa-times"></i>
                     </button>
-                    <div class="connection-indicator">
-                        <div class="indicator-dot"></div>
-                        <span>VPN</span>
-                    </div>
                 </div>
-            </header>
 
-            <!-- Main Content -->
+                <div class="user-profile-sidebar">
+                    <div class="avatar-large">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <div class="user-info-sidebar">
+                        <h3>Alex Morgan</h3>
+                        <p>alex@email.com</p>
+                    </div>
+                    <div class="plan-badge">Premium</div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <a href="#dashboard" class="nav-item active" data-screen="dashboard">
+                        <i class="fas fa-house"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="#servers" class="nav-item" data-screen="servers">
+                        <i class="fas fa-server"></i>
+                        <span>Servers</span>
+                        <span class="badge">24</span>
+                    </a>
+                    <a href="#stats" class="nav-item" data-screen="stats">
+                        <i class="fas fa-chart-simple"></i>
+                        <span>Statistics</span>
+                    </a>
+                    <a href="#profile" class="nav-item" data-screen="profile">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a href="#subscription" class="nav-item" data-screen="subscription">
+                        <i class="fas fa-crown"></i>
+                        <span>Subscription</span>
+                    </a>
+                    <a href="#settings" class="nav-item" data-screen="settings">
+                        <i class="fas fa-gear"></i>
+                        <span>Settings</span>
+                    </a>
+                    <a href="#support" class="nav-item" data-screen="support">
+                        <i class="fas fa-headset"></i>
+                        <span>Support</span>
+                    </a>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="storage-info">
+                        <div class="storage-label">
+                            <span>Data Usage</span>
+                            <span>65GB / 100GB</span>
+                        </div>
+                        <div class="storage-bar">
+                            <div class="storage-fill" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <button class="logout-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out"></i>
+                        <span>Logout</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- MAIN CONTENT AREA -->
             <main class="main-content">
-                <!-- Quick Stats -->
-                <div class="quick-stats">
-                    <div class="stat-card">
-                        <div class="stat-icon speed">
-                            <i class="fas fa-tachometer-alt"></i>
-                        </div>
-                        <div class="stat-details">
-                            <span class="stat-label">Download</span>
-                            <span class="stat-value">287 Mbps</span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon ping">
-                            <i class="fas fa-signal"></i>
-                        </div>
-                        <div class="stat-details">
-                            <span class="stat-label">Ping</span>
-                            <span class="stat-value">24 ms</span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon data">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <div class="stat-details">
-                            <span class="stat-label">Data Today</span>
-                            <span class="stat-value">2.4 GB</span>
-                        </div>
-                    </div>
-                </div>
+                <!-- TOP HEADER -->
+                <header class="header">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
 
-                <!-- Current Connection Status -->
-                <div class="connection-card">
-                    <div class="connection-header">
-                        <h2><i class="fas fa-plug"></i> Current Connection</h2>
-                        <div class="connection-time">
-                            <i class="far fa-clock"></i>
-                            <span id="connectionTimer">00:00:00</span>
-                        </div>
+                    <div class="header-logo">
+                        <i class="fas fa-shield-halved"></i>
+                        <span>SEYTRONS</span>
                     </div>
 
-                    <div class="connection-details">
-                        <div class="server-info">
-                            <div class="flag uganda"></div>
-                            <div class="server-text">
-                                <h3>Kampala, Uganda</h3>
-                                <p>Server: UG-204 • Recommended</p>
+                    <div class="header-actions">
+                        <button class="notification-btn" id="notificationBtn">
+                            <i class="fa-regular fa-bell"></i>
+                            <span class="notification-dot"></span>
+                        </button>
+                        <div class="header-avatar" id="profileQuick">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- DYNAMIC SCREENS CONTAINER -->
+                <div class="screens-container" id="screensContainer">
+                    <!-- SCREEN 3: MAIN DASHBOARD -->
+                    <div class="screen dashboard-screen active" id="dashboard">
+                        <!-- Connection Status Section -->
+                        <div class="connection-section">
+                            <div class="connection-card">
+                                <div class="power-button-container">
+                                    <div class="power-button" id="powerButton">
+                                        <div class="power-inner">
+                                            <i class="fas fa-power-off"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="connection-status-text">
+                                    <h2 id="connectionMainStatus">Disconnected</h2>
+                                    <p id="connectionSubStatus">Your data is at risk</p>
+                                </div>
+
+                                <div class="connection-timer" id="connectionTimer">00:00:00</div>
                             </div>
-                            <div class="server-status">
-                                <div class="status-badge active">Active</div>
-                                <div class="load-indicator">
-                                    <i class="fas fa-circle"></i>
-                                    <span>42% load</span>
+                        </div>
+
+                        <!-- Location Info Card -->
+                        <div class="location-card">
+                            <div class="location-header">
+                                <h3>Current Location</h3>
+                                <button class="change-location-btn" id="changeLocationBtn">Change</button>
+                            </div>
+
+                            <div class="location-info">
+                                <div class="flag-container">
+                                    <img src="https://flagcdn.com/w60/ug.png" alt="Uganda" id="currentFlag">
+                                </div>
+                                <div class="location-details">
+                                    <span class="city-country" id="currentLocation">Kampala, Uganda</span>
+                                    <span class="ip-address" id="currentIP">197.239.42.186</span>
+                                </div>
+                                <div class="ping-badge" id="currentPing">24 ms</div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Stats Card -->
+                        <div class="quick-stats-card">
+                            <div class="stats-header">
+                                <h3>Today's Usage</h3>
+                                <button class="view-all-btn" id="viewStatsBtn">Details</button>
+                            </div>
+
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-label">Download</span>
+                                    <span class="stat-value">1.2 GB</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Upload</span>
+                                    <span class="stat-value">0.3 GB</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Top Speed</span>
+                                    <span class="stat-value">287 Mbps</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="encryption-info">
-                            <div class="encryption-item">
-                                <i class="fas fa-lock"></i>
-                                <span>AES-256 Encryption</span>
+                        <!-- Popular Servers -->
+                        <div class="servers-section">
+                            <div class="section-header">
+                                <h3>Popular Servers</h3>
+                                <button class="view-all-btn" id="viewAllServers">View All</button>
                             </div>
-                            <div class="encryption-item">
-                                <i class="fas fa-user-secret"></i>
-                                <span>No Logs Policy</span>
-                            </div>
-                            <div class="encryption-item">
-                                <i class="fas fa-shield-alt"></i>
-                                <span>Kill Switch Active</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- VPN Portal -->
-                <div class="vpn-portal-section">
-                    <div class="portal-container">
-                        <div class="portal-glow"></div>
-                        <div class="portal-rings">
-                            <div class="ring ring-1"></div>
-                            <div class="ring ring-2"></div>
-                            <div class="ring ring-3"></div>
-                        </div>
-                        <div class="portal-center" id="portalCenter">
-                            <div class="center-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <div class="center-status" id="centerStatus">
-                                <span class="status-text">SECURE</span>
-                                <span class="status-sub">Tap to Connect</span>
+                            <div class="horizontal-server-list" id="popularServers">
+                                <!-- Will be populated by JS -->
                             </div>
                         </div>
+
+                        <!-- Bottom Navigation Bar -->
+                        <nav class="bottom-nav">
+                            <a href="#" class="nav-item active" data-screen="dashboard">
+                                <i class="fas fa-house"></i>
+                                <span>Home</span>
+                            </a>
+                            <a href="#" class="nav-item" data-screen="servers">
+                                <i class="fas fa-server"></i>
+                                <span>Servers</span>
+                            </a>
+                            <a href="#" class="nav-item" data-screen="stats">
+                                <i class="fas fa-chart-simple"></i>
+                                <span>Stats</span>
+                            </a>
+                            <a href="#" class="nav-item" data-screen="profile">
+                                <i class="fas fa-user"></i>
+                                <span>Profile</span>
+                            </a>
+                        </nav>
                     </div>
 
-                    <div class="vpn-controls">
-                        <button class="vpn-btn connect-btn" id="vpnConnectBtn">
-                            <div class="btn-icon">
-                                <i class="fas fa-power-off"></i>
+                    <!-- SCREEN 4: FULL SERVER LIST -->
+                    <div class="screen servers-screen" id="servers">
+                        <div class="screen-header">
+                            <button class="back-btn" data-back="dashboard">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h2>Servers</h2>
+                            <div class="header-actions">
+                                <button class="search-toggle" id="searchToggle">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <button class="filter-toggle" id="filterToggle">
+                                    <i class="fas fa-sliders"></i>
+                                </button>
                             </div>
-                            <div class="btn-text">
-                                <span class="btn-title">Connect VPN</span>
-                                <span class="btn-sub">Tap to secure connection</span>
-                            </div>
-                        </button>
+                        </div>
 
-                        <div class="quick-actions">
-                            <button class="quick-btn" id="quickConnect">
-                                <i class="fas fa-bolt"></i>
-                                <span>Quick Connect</span>
-                            </button>
-                            <button class="quick-btn" id="changeServer">
-                                <i class="fas fa-random"></i>
-                                <span>Change Server</span>
-                            </button>
-                            <button class="quick-btn" id="speedTest">
-                                <i class="fas fa-running"></i>
-                                <span>Test Speed</span>
+                        <!-- Search Bar (Expandable) -->
+                        <div class="search-bar" id="searchBar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search servers..." id="serverSearch">
+                            <button class="clear-search" id="clearSearch">
+                                <i class="fas fa-times"></i>
                             </button>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Advanced Features -->
-                <div class="features-section">
-                    <h3><i class="fas fa-star"></i> Advanced Features</h3>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon threat">
-                                <i class="fas fa-virus-slash"></i>
-                            </div>
-                            <h4>Threat Protection</h4>
-                            <p>Block malware & trackers</p>
-                            <div class="feature-toggle">
-                                <label class="switch">
-                                    <input type="checkbox" checked>
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
+                        <!-- Filter Chips -->
+                        <div class="filter-chips" id="filterChips">
+                            <button class="chip active" data-filter="all">All</button>
+                            <button class="chip" data-filter="recommended">Recommended</button>
+                            <button class="chip" data-filter="fastest">Fastest</button>
+                            <button class="chip" data-filter="favorites">Favorites</button>
+                            <button class="chip" data-filter="europe">Europe</button>
+                            <button class="chip" data-filter="asia">Asia</button>
+                            <button class="chip" data-filter="americas">Americas</button>
                         </div>
 
-                        <div class="feature-card">
-                            <div class="feature-icon split">
-                                <i class="fas fa-code-branch"></i>
-                            </div>
-                            <h4>Split Tunneling</h4>
-                            <p>Choose apps for VPN</p>
-                            <div class="feature-toggle">
-                                <label class="switch">
-                                    <input type="checkbox">
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="feature-card">
-                            <div class="feature-icon dns">
-                                <i class="fas fa-globe"></i>
-                            </div>
-                            <h4>Private DNS</h4>
-                            <p>Encrypted DNS queries</p>
-                            <div class="feature-toggle">
-                                <label class="switch">
-                                    <input type="checkbox" checked>
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="feature-card">
-                            <div class="feature-icon auto">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <h4>Auto-Connect</h4>
-                            <p>Connect on untrusted WiFi</p>
-                            <div class="feature-toggle">
-                                <label class="switch">
-                                    <input type="checkbox">
-                                    <span class="slider"></span>
-                                </label>
-                            </div>
+                        <!-- Server List -->
+                        <div class="server-list" id="serverList">
+                            <!-- Will be populated by JS -->
                         </div>
                     </div>
-                </div>
 
-                <!-- Recent Activity -->
-                <div class="activity-section">
-                    <div class="activity-header">
-                        <h3><i class="fas fa-history"></i> Recent Activity</h3>
-                        <button class="view-all">View All</button>
+                    <!-- SCREEN 5: STATISTICS & USAGE -->
+                    <div class="screen stats-screen" id="stats">
+                        <div class="screen-header">
+                            <button class="back-btn" data-back="dashboard">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h2>Statistics</h2>
+                            <button class="export-btn" id="exportStats">
+                                <i class="fas fa-share"></i>
+                            </button>
+                        </div>
+
+                        <!-- Summary Cards -->
+                        <div class="summary-cards">
+                            <div class="summary-card">
+                                <div class="summary-icon">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                                <div class="summary-info">
+                                    <span class="summary-label">Total Downloaded</span>
+                                    <span class="summary-value">45.2 GB</span>
+                                </div>
+                            </div>
+
+                            <div class="summary-card">
+                                <div class="summary-icon">
+                                    <i class="fas fa-upload"></i>
+                                </div>
+                                <div class="summary-info">
+                                    <span class="summary-label">Total Uploaded</span>
+                                    <span class="summary-value">12.8 GB</span>
+                                </div>
+                            </div>
+
+                            <div class="summary-card">
+                                <div class="summary-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="summary-info">
+                                    <span class="summary-label">Connection Time</span>
+                                    <span class="summary-value">127h 32m</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Daily Usage Chart -->
+                        <div class="chart-card">
+                            <h3>Daily Usage (Last 7 Days)</h3>
+                            <div class="bar-chart" id="dailyChart">
+                                <!-- Will be populated by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Connection History -->
+                        <div class="history-card">
+                            <h3>Recent Connections</h3>
+                            <div class="history-list" id="connectionHistory">
+                                <!-- Will be populated by JS -->
+                            </div>
+                        </div>
                     </div>
-                    <div class="activity-list">
-                        <div class="activity-item">
-                            <div class="activity-icon success">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="activity-details">
-                                <p>Connected to USA server</p>
-                                <span class="activity-time">10 minutes ago</span>
-                            </div>
-                            <span class="activity-duration">45m</span>
+
+                    <!-- SCREEN 6: PROFILE & ACCOUNT -->
+                    <div class="screen profile-screen" id="profile">
+                        <div class="screen-header">
+                            <button class="back-btn" data-back="dashboard">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h2>Profile</h2>
+                            <button class="edit-profile" id="editProfile">
+                                <i class="fas fa-pen"></i>
+                            </button>
                         </div>
-                        <div class="activity-item">
-                            <div class="activity-icon warning">
-                                <i class="fas fa-exclamation-triangle"></i>
+
+                        <div class="profile-card">
+                            <div class="profile-avatar">
+                                <i class="fas fa-user-astronaut"></i>
+                                <button class="change-avatar">
+                                    <i class="fas fa-camera"></i>
+                                </button>
                             </div>
-                            <div class="activity-details">
-                                <p>Blocked phishing attempt</p>
-                                <span class="activity-time">1 hour ago</span>
-                            </div>
-                            <span class="activity-tag">Security</span>
+                            <h3>Alex Morgan</h3>
+                            <p class="profile-email">alex.morgan@email.com</p>
+                            <div class="profile-plan">Premium Member</div>
+                            <p class="member-since">Member since Jan 2025</p>
                         </div>
-                        <div class="activity-item">
-                            <div class="activity-icon info">
+
+                        <div class="profile-menu">
+                            <a href="#" class="profile-menu-item" data-screen="subscription">
+                                <i class="fas fa-crown"></i>
+                                <span>Subscription</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                            <a href="#" class="profile-menu-item" data-screen="settings">
+                                <i class="fas fa-gear"></i>
+                                <span>Settings</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                            <a href="#" class="profile-menu-item" data-screen="support">
+                                <i class="fas fa-headset"></i>
+                                <span>Support</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+
+                        <div class="referral-card">
+                            <h4>Refer & Earn</h4>
+                            <p>Share SEYTRONS with friends and get 1 month free</p>
+                            <div class="referral-code">
+                                <span>SEYTRON123</span>
+                                <button class="copy-code">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SCREEN 7: SUBSCRIPTION & PLANS -->
+                    <div class="screen subscription-screen" id="subscription">
+                        <div class="screen-header">
+                            <button class="back-btn" data-back="profile">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h2>Subscription</h2>
+                        </div>
+
+                        <div class="current-plan-card">
+                            <div class="plan-status">
+                                <span class="plan-name">Premium Plan</span>
+                                <span class="plan-badge active">Active</span>
+                            </div>
+                            <p class="plan-expiry">Expires: December 15, 2026</p>
+                            <div class="devices-count">
+                                <i class="fas fa-device"></i>
+                                <span>3 of 5 devices used</span>
+                            </div>
+                        </div>
+
+                        <h3 class="plans-title">Upgrade Plan</h3>
+
+                        <div class="plans-grid">
+                            <div class="plan-card monthly">
+                                <div class="plan-header">
+                                    <h4>Monthly</h4>
+                                    <span class="price">$9.99<span>/mo</span></span>
+                                </div>
+                                <ul class="plan-features">
+                                    <li><i class="fas fa-check"></i> 24 Server Locations</li>
+                                    <li><i class="fas fa-check"></i> 5 Devices</li>
+                                    <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
+                                    <li><i class="fas fa-check"></i> No Logs Policy</li>
+                                </ul>
+                                <button class="select-plan">Select</button>
+                            </div>
+
+                            <div class="plan-card yearly popular">
+                                <div class="popular-badge">Most Popular</div>
+                                <div class="plan-header">
+                                    <h4>Yearly</h4>
+                                    <span class="price">$79.99<span>/yr</span></span>
+                                    <span class="savings">Save 33%</span>
+                                </div>
+                                <ul class="plan-features">
+                                    <li><i class="fas fa-check"></i> 24 Server Locations</li>
+                                    <li><i class="fas fa-check"></i> 10 Devices</li>
+                                    <li><i class="fas fa-check"></i> Unlimited Bandwidth</li>
+                                    <li><i class="fas fa-check"></i> Priority Support</li>
+                                </ul>
+                                <button class="select-plan primary">Select</button>
+                            </div>
+
+                            <div class="plan-card lifetime">
+                                <div class="plan-header">
+                                    <h4>Lifetime</h4>
+                                    <span class="price">$199.99</span>
+                                    <span class="savings">Best Value</span>
+                                </div>
+                                <ul class="plan-features">
+                                    <li><i class="fas fa-check"></i> 24 Server Locations</li>
+                                    <li><i class="fas fa-check"></i> Unlimited Devices</li>
+                                    <li><i class="fas fa-check"></i> Lifetime Updates</li>
+                                    <li><i class="fas fa-check"></i> Priority Support</li>
+                                </ul>
+                                <button class="select-plan">Select</button>
+                            </div>
+                        </div>
+
+                        <div class="payment-methods">
+                            <h4>Payment Methods</h4>
+                            <div class="payment-icons">
+                                <i class="fab fa-cc-visa"></i>
+                                <i class="fab fa-cc-mastercard"></i>
+                                <i class="fab fa-cc-paypal"></i>
+                                <i class="fab fa-cc-apple-pay"></i>
+                                <i class="fab fa-google-pay"></i>
+                            </div>
+                        </div>
+
+                        <div class="promo-code">
+                            <input type="text" placeholder="Promo code">
+                            <button>Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- SCREEN 8: SETTINGS -->
+                    <div class="screen settings-screen" id="settings">
+                        <div class="screen-header">
+                            <button class="back-btn" data-back="profile">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h2>Settings</h2>
+                        </div>
+
+                        <div class="settings-group">
+                            <h3>Connection</h3>
+
+                            <div class="setting-item">
+                                <div>
+                                    <h4>Protocol</h4>
+                                    <p>WireGuard / OpenVPN / IKEv2</p>
+                                </div>
+                                <select class="setting-select" id="protocolSelect">
+                                    <option>WireGuard</option>
+                                    <option>OpenVPN</option>
+                                    <option>IKEv2</option>
+                                </select>
+                            </div>
+
+                            <div class="setting-item">
+                                <div>
+                                    <h4>Auto-connect on Wi-Fi</h4>
+                                    <p>Connect automatically on Wi-Fi</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="autoWifi">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-item">
+                                <div>
+                                    <h4>Auto-connect on Mobile</h4>
+                                    <p>Connect automatically on mobile data</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="autoMobile">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-item">
+                                <div>
+                                    <h4>Kill Switch</h4>
+                                    <p>Block internet if VPN drops</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="killSwitch" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <h3>Security & Privacy</h3>
+
+                            <div class="setting-item">
+                                <div>
+                                    <h4>DNS Leak Protection</h4>
+                                    <p>Prevent DNS leaks</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="dnsLeak" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-item">
+                                <div>
+                                    <h4>IPv6 Leak Protection</h4>
+                                    <p>Block IPv6 traffic</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="ipv6Leak" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-item">
+                                <div>
+                                    <h4>Ad Blocker</h4>
+                                    <p>Block ads and trackers</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="adBlocker">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <h3>Appearance</h3>
+
+                            <div class="setting-item">
+                                <div>
+                                    <h4>Dark Mode</h4>
+                                    <p>Toggle dark/light theme</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="darkMode" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-item">
+                                <div>
+                                    <h4>Language</h4>
+                                    <p>Select your language</p>
+                                </div>
+                                <select class="setting-select" id="languageSelect">
+                                    <option>English</option>
+                                    <option>Spanish</option>
+                                    <option>French</option>
+                                    <option>German</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SCREEN 9: SPLIT TUNNELING -->
+                    <div class="screen splittunnel-screen" id="splittunnel">
+                        <div class="screen-header">
+                            <button class="back-btn" data-back="settings">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h2>Split Tunneling</h2>
+                            <button class="info-btn" id="splitTunnelInfo">
                                 <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+
+                        <div class="tabs">
+                            <button class="tab active" data-tab="vpn">VPN Apps</button>
+                            <button class="tab" data-tab="bypass">Bypass Apps</button>
+                        </div>
+
+                        <div class="search-apps">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search apps...">
+                        </div>
+
+                        <div class="apps-list" id="appsList">
+                            <!-- Will be populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- SCREEN 10: SUPPORT & HELP -->
+                    <div class="screen support-screen" id="support">
+                        <div class="screen-header">
+                            <button class="back-btn" data-back="profile">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h2>Help & Support</h2>
+                        </div>
+
+                        <div class="support-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search FAQs...">
+                        </div>
+
+                        <div class="faq-section">
+                            <h3>Frequently Asked Questions</h3>
+
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    <span>How do I connect to a server?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Simply tap the power button on the home screen and select your preferred server
+                                        from the list.</p>
+                                </div>
                             </div>
-                            <div class="activity-details">
-                                <p>Speed test completed</p>
-                                <span class="activity-time">2 hours ago</span>
+
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    <span>Why is my connection slow?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Try connecting to a server closer to your location or use the "Fastest" filter in
+                                        the server list.</p>
+                                </div>
                             </div>
-                            <span class="activity-speed">287 Mbps</span>
+
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    <span>How do I cancel my subscription?</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Go to Profile → Subscription and click "Manage Subscription" to cancel or change
+                                        your plan.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-options">
+                            <h3>Contact Us</h3>
+
+                            <button class="contact-btn">
+                                <i class="fas fa-comment"></i>
+                                <span>Live Chat</span>
+                            </button>
+
+                            <button class="contact-btn">
+                                <i class="fas fa-envelope"></i>
+                                <span>Email Support</span>
+                            </button>
+
+                            <button class="contact-btn">
+                                <i class="fas fa-ticket"></i>
+                                <span>Submit Ticket</span>
+                            </button>
                         </div>
                     </div>
                 </div>
             </main>
-
-            <!-- Fixed Footer Navigation -->
-            <footer class="app-footer">
-                <div class="footer-time">
-                    <i class="far fa-clock"></i>
-                    <span id="footerTime">00:00</span>
-                </div>
-
-                <nav class="footer-nav">
-                    <a href="#" class="nav-item active">
-                        <i class="fas fa-home"></i>
-                        <span>Home</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-server"></i>
-                        <span>Servers</span>
-                    </a>
-                    <a href="#" class="nav-item center-nav" id="quickActionBtn">
-                        <div class="nav-center-icon">
-                            <i class="fas fa-plus"></i>
-                        </div>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Security</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-user"></i>
-                        <span>Account</span>
-                    </a>
-                </nav>
-
-                <div class="footer-battery">
-                    <i class="fas fa-battery-three-quarters"></i>
-                    <span>85%</span>
-                </div>
-            </footer>
         </div>
 
-        <!-- Notification Panel -->
+        <!-- NOTIFICATION PANEL -->
         <div class="notification-panel" id="notificationPanel">
-            <div class="notification-header">
+            <div class="panel-header">
                 <h3>Notifications</h3>
-                <button class="close-notifications" id="closeNotifications">
+                <button class="close-panel" id="closeNotifications">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="notification-list">
-                <div class="notification-item unread">
-                    <div class="notification-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p>Security Alert: Suspicious activity blocked</p>
-                        <span>Just now</span>
-                    </div>
+            <div class="panel-body" id="notificationList">
+                <!-- Will be populated by JS -->
+            </div>
+        </div>
+
+        <!-- POPUP MODALS -->
+
+        <!-- Connecting Dialog -->
+        <div class="modal" id="connectingModal">
+            <div class="modal-content">
+                <div class="connecting-spinner"></div>
+                <h3>Connecting...</h3>
+                <p id="connectingServer">to Kampala, Uganda</p>
+                <button class="cancel-btn" id="cancelConnection">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Disconnect Confirmation -->
+        <div class="modal" id="disconnectModal">
+            <div class="modal-content">
+                <div class="modal-icon warning">
+                    <i class="fas fa-exclamation-triangle"></i>
                 </div>
-                <div class="notification-item unread">
-                    <div class="notification-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p>Server optimized for better speed</p>
-                        <span>30 minutes ago</span>
-                    </div>
-                </div>
-                <div class="notification-item">
-                    <div class="notification-icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <div class="notification-content">
-                        <p>Premium features unlocked for 7 days</p>
-                        <span>2 hours ago</span>
-                    </div>
+                <h3>Disconnect VPN?</h3>
+                <p>Your connection will no longer be encrypted</p>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel" id="stayConnected">Stay Connected</button>
+                    <button class="modal-btn confirm" id="confirmDisconnect">Disconnect</button>
                 </div>
             </div>
         </div>
 
-        <!-- Quick Action Menu -->
-        <div class="quick-action-menu" id="quickActionMenu">
-            <div class="action-header">
-                <h3>Quick Actions</h3>
-            </div>
-            <div class="action-items">
-                <button class="action-item">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>Secure All Apps</span>
-                </button>
-                <button class="action-item">
-                    <i class="fas fa-user-secret"></i>
-                    <span>Incognito Mode</span>
-                </button>
-                <button class="action-item">
-                    <i class="fas fa-wifi"></i>
-                    <span>WiFi Protection</span>
-                </button>
-                <button class="action-item">
-                    <i class="fas fa-history"></i>
-                    <span>Clear Logs</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Connection Animation Overlay -->
-        <div class="connection-overlay" id="connectionOverlay">
-            <div class="overlay-content">
-                <div class="connecting-animation">
-                    <div class="spinner"></div>
-                    <div class="spinner-ring"></div>
+        <!-- Premium Feature Modal -->
+        <div class="modal" id="premiumModal">
+            <div class="modal-content">
+                <div class="modal-icon premium">
+                    <i class="fas fa-crown"></i>
                 </div>
-                <h2 id="overlayTitle">Connecting to VPN</h2>
-                <p id="overlayMessage">Establishing secure connection...</p>
-                <div class="connection-progress">
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                    <span class="progress-text">0%</span>
+                <h3>Premium Feature</h3>
+                <p>Upgrade to access this feature</p>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel" id="closePremiumModal">Not Now</button>
+                    <button class="modal-btn confirm primary" id="upgradeNow">Upgrade</button>
                 </div>
             </div>
         </div>
 
-    </div> <!-- End of desktop-container -->
+        <!-- Rate App Prompt -->
+        <div class="modal" id="rateAppModal">
+            <div class="modal-content">
+                <h3>Rate SEYTRONS</h3>
+                <p>How would you rate our app?</p>
+                <div class="star-rating">
+                    <i class="fa-regular fa-star" data-rating="1"></i>
+                    <i class="fa-regular fa-star" data-rating="2"></i>
+                    <i class="fa-regular fa-star" data-rating="3"></i>
+                    <i class="fa-regular fa-star" data-rating="4"></i>
+                    <i class="fa-regular fa-star" data-rating="5"></i>
+                </div>
+                <textarea placeholder="Tell us more (optional)"></textarea>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel">Not Now</button>
+                    <button class="modal-btn confirm primary">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Update Available Modal -->
+        <div class="modal" id="updateModal">
+            <div class="modal-content">
+                <div class="modal-icon update">
+                    <i class="fas fa-download"></i>
+                </div>
+                <h3>Update Available</h3>
+                <p>Version 2.5.0 is ready</p>
+                <ul class="update-features">
+                    <li>New servers in Asia</li>
+                    <li>Improved connection speed</li>
+                    <li>Bug fixes</li>
+                </ul>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel">Later</button>
+                    <button class="modal-btn confirm primary">Update Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="framing/script.js"></script>
 </body>
