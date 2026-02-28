@@ -775,9 +775,9 @@ function initRateModal() {
     });
     
     // Show rate modal after 30 seconds (for demo)
-    setTimeout(() => {
-        rateModal.classList.add('active');
-    }, 30000);
+    // setTimeout(() => {
+    //     rateModal.classList.add('active');
+    // }, 30000);
 }
 
 // ========== INITIALIZE ALL ==========
