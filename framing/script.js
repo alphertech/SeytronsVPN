@@ -1,5 +1,3 @@
-// Continue from previous script.js
-
 // ========== SPLASH SCREEN ==========
 function initSplashScreen() {
     const splash = document.getElementById('splashScreen');
@@ -171,8 +169,7 @@ function switchScreen(screenId) {
         settings: 'Settings',
         splittunnel: 'Split Tunneling',
         support: 'Support'
-    };
-    
+    };  
     document.title = `SEYTRONS - ${screenNames[screenId] || 'VPN'}`;
 }
 
@@ -780,6 +777,7 @@ function initRateModal() {
     // }, 30000);
 }
 
+
 // ========== INITIALIZE ALL ==========
 document.addEventListener('DOMContentLoaded', () => {
     initSplashScreen();
@@ -872,3 +870,57 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log('SEYTRONS VPN initialized successfully');
 });
+// In your DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize i18n first
+    await i18n.init();
+    
+    // Translate UI
+    i18n.translateUI();
+    
+    // Initialize language selector
+    i18n.renderLanguageSelector('language-selector-container');
+    
+    // Initialize other components
+    initSplashScreen();
+    initOnboarding();
+    initSidebar();
+    initNavigation();
+    initVPNConnection();
+    initServers();
+    initStatistics();
+    initNotifications();
+    initSettings();
+    initFAQ();
+    initRateModal();
+    
+    // Listen for language changes
+    i18n.addListener((lang, translations) => {
+        // Re-translate dynamic content
+        updateDynamicContent();
+    });
+});
+
+// Function to update dynamic content that's not in data-i18n attributes
+function updateDynamicContent() {
+    // Update server list items
+    document.querySelectorAll('.server-item').forEach(item => {
+        const connectBtn = item.querySelector('.connect-server-btn');
+        connectBtn.textContent = i18n.translate('servers.connect');
+    });
+    
+    // Update connection timer formatting if needed
+    // etc.
+}
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+                console.log('ServiceWorker registered');
+            })
+            .catch(err => {
+                console.log('ServiceWorker registration failed:', err);
+            });
+    });
+}

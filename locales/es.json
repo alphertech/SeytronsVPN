@@ -1,0 +1,50 @@
+{
+  "app": {
+    "name": "SEYTRONS VPN",
+    "tagline": "Seguro y Privado"
+  },
+  "common": {
+    "connect": "Conectar",
+    "disconnect": "Desconectar",
+    "connecting": "Conectando...",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "close": "Cerrar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "skip": "Saltar",
+    "done": "Listo",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Advertencia",
+    "confirm": "Confirmar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar"
+  },
+  "splash": {
+    "initializing": "Inicializando...",
+    "loadingServers": "Cargando servidores...",
+    "almostReady": "Casi listo...",
+    "version": "Versión {{version}}"
+  },
+  "dashboard": {
+    "disconnected": "Desconectado",
+    "connected": "Conectado",
+    "connecting": "Conectando...",
+    "dataAtRisk": "Sus datos están en riesgo",
+    "dataSecure": "Sus datos están seguros",
+    "currentLocation": "Ubicación Actual",
+    "change": "Cambiar",
+    "todayUsage": "Uso de Hoy",
+    "download": "Descarga",
+    "upload": "Subida",
+    "topSpeed": "Velocidad Máxima",
+    "details": "Detalles",
+    "popularServers": "Servidores Populares",
+    "viewAll": "Ver Todos"
+  }
+}

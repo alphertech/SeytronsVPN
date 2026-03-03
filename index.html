@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SEYTRONS VPN - Secure & Private</title>
+    <title>SEYTRONS - Secure & Private Network</title>
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,6 +17,11 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="framing/styles.css">
     <py-script src="engines/engine.py"></py-script>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SEYTRONS">
+    <link rel="apple-touch-icon" href="/icons/icon-152x152.png">
 
 </head>
 
@@ -28,10 +33,9 @@
                 <div class="splash-logo">
                     <i class="fas fa-shield-halved"></i>
                 </div>
-                <h1>SEYTRONS</h1>
-                <p class="version">Version 2.4.1</p>
-                <div class="splash-spinner"></div>
-                <p class="splash-status" id="splashStatus">Initializing...</p>
+                <h1 data-i18n="app.name">SEYTRONS</h1>
+                <p class="version" data-i18n="app.version">Version 2.4.1</p>
+                <p class="splash-status" id="splashStatus" data-i18n="splash.initializing">Initializing...</p>
             </div>
         </div>
 
@@ -45,8 +49,8 @@
                     <div class="slide-icon">
                         <i class="fas fa-user-secret"></i>
                     </div>
-                    <h2>Complete Privacy</h2>
-                    <p>Hide your IP address and browse anonymously. No one can track your online activities.</p>
+                    <h2 data-i18n="onboarding.privacy_title">Complete Privacy</h2>
+                    <p data-i18n="onboarding.privacy_desc">Hide your IP address and browse anonymously...</p>
                 </div>
 
                 <!-- Slide 2: Security -->
@@ -210,8 +214,8 @@
                                 </div>
 
                                 <div class="connection-status-text">
-                                    <h2 id="connectionMainStatus">Disconnected</h2>
-                                    <p id="connectionSubStatus">Your data is at risk</p>
+                                    <h2 id="connectionMainStatus" data-i18n="dashboard.disconnected">Disconnected</h2>
+                                    <p id="connectionSubStatus" data-i18n="dashboard.at_risk">Your data is at risk</p>
                                 </div>
 
                                 <div class="connection-timer" id="connectionTimer">00:00:00</div>
@@ -230,7 +234,7 @@
                                     <img src="https://flagcdn.com/w60/ug.png" alt="Uganda" id="currentFlag">
                                 </div>
                                 <div class="location-details">
-                                    <span class="city-country" id="currentLocation">Kampala, Uganda</span>
+                                    <span class="city-country" id="currentLocation"></span>
                                     <span class="ip-address" id="currentIP">197.239.42.186</span>
                                 </div>
                                 <div class="ping-badge" id="currentPing">24 ms</div>
@@ -321,8 +325,9 @@
 
                         <!-- Filter Chips -->
                         <div class="filter-chips" id="filterChips">
-                            <button class="chip active" data-filter="all">All</button>
-                            <button class="chip" data-filter="recommended">Recommended</button>
+                            <input type="text" id="serverSearch" data-i18n-placeholder="servers.search">
+                            <button class="chip active" data-filter="all" data-i18n="servers.all">All</button>
+                            <button class="chip" data-filter="recommended" data-i18n="servers.recommended">Recommended</button>
                             <button class="chip" data-filter="fastest">Fastest</button>
                             <button class="chip" data-filter="favorites">Favorites</button>
                             <button class="chip" data-filter="europe">Europe</button>
@@ -862,6 +867,8 @@
     </div>
 
     <script src="framing/script.js"></script>
+    <script src="framing/functions.js"></script>
+    <script src="services/i18n.js"></script>
 </body>
 
 </html>

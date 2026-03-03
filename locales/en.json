@@ -1,0 +1,274 @@
+{
+  "app": {
+    "name": "SEYTRONS VPN",
+    "tagline": "Secure & Private"
+  },
+  "common": {
+    "connect": "Connect",
+    "disconnect": "Disconnect",
+    "connecting": "Connecting...",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "skip": "Skip",
+    "done": "Done",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "confirm": "Confirm",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort"
+  },
+  "splash": {
+    "initializing": "Initializing...",
+    "loadingServers": "Loading servers...",
+    "almostReady": "Almost ready...",
+    "version": "Version {{version}}"
+  },
+  "onboarding": {
+    "slide1": {
+      "title": "Complete Privacy",
+      "description": "Hide your IP address and browse anonymously. No one can track your online activities."
+    },
+    "slide2": {
+      "title": "Military-Grade Security",
+      "description": "AES-256 encryption with strict no-logs policy. Your data stays yours."
+    },
+    "slide3": {
+      "title": "Lightning Fast",
+      "description": "24 servers worldwide with unlimited bandwidth. No speed caps."
+    },
+    "slide4": {
+      "title": "Ready to Go?",
+      "description": "Join millions who trust SEYTRONS for their online privacy."
+    }
+  },
+  "dashboard": {
+    "disconnected": "Disconnected",
+    "connected": "Connected",
+    "connecting": "Connecting...",
+    "dataAtRisk": "Your data is at risk",
+    "dataSecure": "Your data is secure",
+    "currentLocation": "Current Location",
+    "change": "Change",
+    "todayUsage": "Today's Usage",
+    "download": "Download",
+    "upload": "Upload",
+    "topSpeed": "Top Speed",
+    "details": "Details",
+    "popularServers": "Popular Servers",
+    "viewAll": "View All"
+  },
+  "servers": {
+    "title": "Servers",
+    "searchPlaceholder": "Search servers...",
+    "filters": {
+      "all": "All",
+      "recommended": "Recommended",
+      "fastest": "Fastest",
+      "favorites": "Favorites",
+      "europe": "Europe",
+      "asia": "Asia",
+      "americas": "Americas"
+    },
+    "load": "Load",
+    "ping": "Ping",
+    "connect": "Connect",
+    "favorite": "Add to favorites",
+    "unfavorite": "Remove from favorites"
+  },
+  "statistics": {
+    "title": "Statistics",
+    "totalDownloaded": "Total Downloaded",
+    "totalUploaded": "Total Uploaded",
+    "connectionTime": "Connection Time",
+    "dailyUsage": "Daily Usage (Last 7 Days)",
+    "recentConnections": "Recent Connections",
+    "export": "Export",
+    "history": {
+      "location": "Location",
+      "time": "Time",
+      "duration": "Duration",
+      "data": "Data"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "memberSince": "Member since {{date}}",
+    "premiumMember": "Premium Member",
+    "freeMember": "Free Member",
+    "editProfile": "Edit Profile",
+    "subscription": "Subscription",
+    "settings": "Settings",
+    "support": "Support",
+    "referral": {
+      "title": "Refer & Earn",
+      "description": "Share SEYTRONS with friends and get 1 month free",
+      "copy": "Copy code",
+      "copied": "Copied!"
+    }
+  },
+  "subscription": {
+    "title": "Subscription",
+    "currentPlan": "Current Plan",
+    "expires": "Expires: {{date}}",
+    "devicesUsed": "{{used}} of {{total}} devices used",
+    "upgradePlan": "Upgrade Plan",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "lifetime": "Lifetime",
+    "perMonth": "/mo",
+    "perYear": "/yr",
+    "save": "Save {{percent}}",
+    "bestValue": "Best Value",
+    "mostPopular": "Most Popular",
+    "features": {
+      "serverLocations": "{{count}} Server Locations",
+      "devices": "{{count}} Devices",
+      "unlimitedBandwidth": "Unlimited Bandwidth",
+      "noLogs": "No Logs Policy",
+      "prioritySupport": "Priority Support",
+      "lifetimeUpdates": "Lifetime Updates"
+    },
+    "select": "Select",
+    "paymentMethods": "Payment Methods",
+    "promoCode": "Promo code",
+    "apply": "Apply"
+  },
+  "settings": {
+    "title": "Settings",
+    "connection": "Connection",
+    "protocol": "Protocol",
+    "protocols": {
+      "wireguard": "WireGuard",
+      "openvpn": "OpenVPN",
+      "ikev2": "IKEv2"
+    },
+    "autoConnect": {
+      "wifi": "Auto-connect on Wi-Fi",
+      "wifiDesc": "Connect automatically on Wi-Fi",
+      "mobile": "Auto-connect on Mobile",
+      "mobileDesc": "Connect automatically on mobile data"
+    },
+    "killSwitch": "Kill Switch",
+    "killSwitchDesc": "Block internet if VPN drops",
+    "security": "Security & Privacy",
+    "dnsLeak": "DNS Leak Protection",
+    "dnsLeakDesc": "Prevent DNS leaks",
+    "ipv6Leak": "IPv6 Leak Protection",
+    "ipv6LeakDesc": "Block IPv6 traffic",
+    "adBlocker": "Ad Blocker",
+    "adBlockerDesc": "Block ads and trackers",
+    "appearance": "Appearance",
+    "darkMode": "Dark Mode",
+    "darkModeDesc": "Toggle dark/light theme",
+    "language": "Language",
+    "languageDesc": "Select your language"
+  },
+  "support": {
+    "title": "Help & Support",
+    "searchFAQs": "Search FAQs...",
+    "faq": "Frequently Asked Questions",
+    "contact": "Contact Us",
+    "liveChat": "Live Chat",
+    "emailSupport": "Email Support",
+    "submitTicket": "Submit Ticket",
+    "faqItems": {
+      "connect": {
+        "question": "How do I connect to a server?",
+        "answer": "Simply tap the power button on the home screen and select your preferred server from the list."
+      },
+      "slow": {
+        "question": "Why is my connection slow?",
+        "answer": "Try connecting to a server closer to your location or use the \"Fastest\" filter in the server list."
+      },
+      "cancel": {
+        "question": "How do I cancel my subscription?",
+        "answer": "Go to Profile → Subscription and click \"Manage Subscription\" to cancel or change your plan."
+      }
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all as read",
+    "clearAll": "Clear all",
+    "empty": "No notifications",
+    "justNow": "Just now",
+    "minutesAgo": "{{count}} min ago",
+    "hoursAgo": "{{count}} hour ago",
+    "hoursAgo_plural": "{{count}} hours ago",
+    "yesterday": "Yesterday",
+    "daysAgo": "{{count}} day ago",
+    "daysAgo_plural": "{{count}} days ago"
+  },
+  "modals": {
+    "connecting": {
+      "title": "Connecting...",
+      "to": "to {{server}}",
+      "cancel": "Cancel"
+    },
+    "disconnect": {
+      "title": "Disconnect VPN?",
+      "message": "Your connection will no longer be encrypted",
+      "stayConnected": "Stay Connected",
+      "disconnect": "Disconnect"
+    },
+    "premium": {
+      "title": "Premium Feature",
+      "message": "Upgrade to access this feature",
+      "notNow": "Not Now",
+      "upgrade": "Upgrade"
+    },
+    "rate": {
+      "title": "Rate SEYTRONS",
+      "message": "How would you rate our app?",
+      "tellMore": "Tell us more (optional)",
+      "submit": "Submit",
+      "notNow": "Not Now"
+    },
+    "update": {
+      "title": "Update Available",
+      "message": "Version {{version}} is ready",
+      "features": "New features",
+      "later": "Later",
+      "updateNow": "Update Now"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong",
+    "network": "Network error. Please check your connection",
+    "server": "Server error. Please try again later",
+    "unauthorized": "Session expired. Please login again",
+    "invalidCredentials": "Invalid email or password",
+    "emailInUse": "Email already in use",
+    "weakPassword": "Password is too weak",
+    "passwordsNotMatch": "Passwords do not match",
+    "required": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "subscription": {
+      "expired": "Your subscription has expired",
+      "deviceLimit": "Device limit reached",
+      "paymentFailed": "Payment failed"
+    }
+  },
+  "time": {
+    "justNow": "just now",
+    "minutes": "{{count}}m",
+    "hours": "{{count}}h",
+    "days": "{{count}}d",
+    "seconds": "{{count}}s"
+  },
+  "units": {
+    "gb": "GB",
+    "mb": "MB",
+    "kb": "KB",
+    "mbps": "Mbps",
+    "ms": "ms"
+  }
+}

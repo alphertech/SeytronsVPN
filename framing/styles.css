@@ -2225,3 +2225,98 @@ input:checked+.slider:before {
                 page-break-after: always;
             }
         }
+
+
+        /* Add to your styles.css */
+.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+.rtl .language-selector .language-option {
+    text-align: right;
+}
+
+.rtl .fa-chevron-right {
+    transform: rotate(180deg);
+}
+
+.rtl .fa-chevron-left {
+    transform: rotate(180deg);
+}
+
+.rtl .back-btn i {
+    transform: rotate(180deg);
+}
+
+/* Language selector styles */
+.language-selector {
+    position: relative;
+    display: inline-block;
+}
+
+.language-selector-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.language-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: none;
+    z-index: 1000;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.language-dropdown.show {
+    display: block;
+}
+
+.language-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.language-option:hover {
+    background: var(--bg-hover);
+}
+
+.language-option.active {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.language-option .lang-code {
+    font-size: 0.9em;
+    color: var(--text-muted);
+}
+
+/* RTL adjustments */
+.rtl .language-dropdown {
+    right: auto;
+    left: 0;
+}
+
+.rtl .language-option {
+    text-align: right;
+}
