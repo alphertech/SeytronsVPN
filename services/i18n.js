@@ -121,6 +121,14 @@ const i18n = {
                     ready_title: 'Ready to Go?',
                     ready_desc: 'Join millions who trust SEYTRONS for their online privacy.'
                 },
+                auth: {
+                    title: 'Sign In',
+                    email: 'Email',
+                    password: 'Password',
+                    login: 'Log In',
+                    register: 'Register',
+                    forgot: 'Forgot password?'
+                },
                 dashboard: {
                     disconnected: 'Disconnected',
                     at_risk: 'Your data is at risk',

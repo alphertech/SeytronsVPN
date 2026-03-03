@@ -54,6 +54,354 @@ function initSplashScreen() {
     }, 300);
 }
 
+// ========== AUTHENTICATION FUNCTIONS ==========
+
+// Show auth screen (call this when app starts)
+function showAuthScreen() {
+    const authScreen = document.getElementById('authScreen');
+    const mainApp = document.getElementById('mainApp');
+    const onboarding = document.getElementById('onboardingScreen');
+    
+    // Hide other screens
+    if (onboarding) onboarding.classList.add('hidden');
+    if (mainApp) mainApp.classList.remove('visible');
+    
+    // Show auth screen
+    authScreen.classList.add('active');
+}
+
+// Hide auth screen (after successful login)
+function hideAuthScreen() {
+    const authScreen = document.getElementById('authScreen');
+    const mainApp = document.getElementById('mainApp');
+    
+    authScreen.classList.remove('active');
+    mainApp.classList.add('visible');
+    
+    // Track login
+    if (window.Analytics) {
+        Analytics.trackEvent('auth', 'login_success');
+    }
+}
+
+// Toggle between Login and Register
+function initAuthTabs() {
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+    const loginSection = document.getElementById('loginSection');
+    const registerSection = document.getElementById('registerSection');
+    
+    loginTab.addEventListener('click', () => {
+        loginTab.classList.add('active');
+        registerTab.classList.remove('active');
+        loginSection.classList.add('active');
+        registerSection.classList.remove('active');
+    });
+    
+    registerTab.addEventListener('click', () => {
+        registerTab.classList.add('active');
+        loginTab.classList.remove('active');
+        registerSection.classList.add('active');
+        loginSection.classList.remove('active');
+    });
+}
+
+// Toggle password visibility
+window.togglePassword = function(inputId) {
+    const input = document.getElementById(inputId);
+    const icon = event.currentTarget.querySelector('i');
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+};
+
+// Login Handler
+function initLogin() {
+    const loginForm = document.getElementById('loginForm');
+    const loginBtn = document.getElementById('loginBtn');
+    
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const remember = document.getElementById('rememberMe').checked;
+        
+        if (!email || !password) {
+            showNotification('Error', 'Please fill in all fields', 'error');
+            return;
+        }
+        
+        // Show loading state
+        loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+        loginBtn.disabled = true;
+        
+        try {
+            // Try to connect to Python backend first
+            let success = false;
+            let userData = null;
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password, remember })
+                });
+                
+                const result = await response.json();
+                success = result.success;
+                userData = result.user;
+            } catch (error) {
+                console.log('Backend not reachable, using mock login');
+                // Mock login for testing
+                success = true;
+                userData = {
+                    name: email.split('@')[0] || 'User',
+                    email: email,
+                    plan: 'Premium',
+                    memberSince: 'Jan 2025'
+                };
+            }
+            
+            if (success) {
+                // Save user data
+                if (window.AppState) {
+                    AppState.user = userData;
+                }
+                
+                // Save to localStorage if remember me
+                if (remember) {
+                    localStorage.setItem('user_email', email);
+                }
+                
+                // Show success message
+                showNotification('Welcome!', `Logged in as ${userData.name}`, 'success');
+                
+                // Hide auth screen
+                hideAuthScreen();
+                
+                // Update profile UI
+                updateProfileUI();
+            } else {
+                showNotification('Login Failed', 'Invalid email or password', 'error');
+            }
+        } catch (error) {
+            showNotification('Error', 'Connection failed', 'error');
+        } finally {
+            // Reset button
+            loginBtn.innerHTML = 'Login';
+            loginBtn.disabled = false;
+        }
+    });
+}
+
+// Register Handler
+function initRegister() {
+    const registerForm = document.getElementById('registerForm');
+    const registerBtn = document.getElementById('registerBtn');
+    
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('regName').value;
+        const email = document.getElementById('regEmail').value;
+        const phone = document.getElementById('regPhone').value;
+        const password = document.getElementById('regPassword').value;
+        const confirmPass = document.getElementById('regConfirmPassword').value;
+        const agreeTerms = document.getElementById('agreeTerms').checked;
+        
+        // Validation
+        if (!name || !email || !phone || !password || !confirmPass) {
+            showNotification('Error', 'Please fill in all fields', 'error');
+            return;
+        }
+        
+        if (password !== confirmPass) {
+            showNotification('Error', 'Passwords do not match', 'error');
+            return;
+        }
+        
+        if (password.length < 8) {
+            showNotification('Error', 'Password must be at least 8 characters', 'error');
+            return;
+        }
+        
+        if (!agreeTerms) {
+            showNotification('Error', 'You must agree to the terms', 'error');
+            return;
+        }
+        
+        // Show loading
+        registerBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
+        registerBtn.disabled = true;
+        
+        try {
+            // Try backend first
+            let success = false;
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, phone, password })
+                });
+                
+                const result = await response.json();
+                success = result.success;
+            } catch (error) {
+                // Mock registration for testing
+                success = true;
+            }
+            
+            if (success) {
+                showNotification('Success!', 'Account created successfully', 'success');
+                
+                // Switch to login tab
+                document.getElementById('loginTab').click();
+                
+                // Pre-fill email
+                document.getElementById('loginEmail').value = email;
+            } else {
+                showNotification('Registration Failed', 'Email already exists', 'error');
+            }
+        } catch (error) {
+            showNotification('Error', 'Registration failed', 'error');
+        } finally {
+            registerBtn.innerHTML = 'Register';
+            registerBtn.disabled = false;
+        }
+    });
+}
+
+// Google Login
+function initGoogleAuth() {
+    const googleLogin = document.getElementById('googleLogin');
+    const googleRegister = document.getElementById('googleRegister');
+    
+    googleLogin.addEventListener('click', () => {
+        // In production, this would redirect to Google OAuth
+        showNotification('Google Login', 'Redirecting to Google...', 'info');
+        
+        // Mock success after 1 second
+        setTimeout(() => {
+            if (window.AppState) {
+                AppState.user = {
+                    name: 'Google User',
+                    email: 'user@gmail.com',
+                    plan: 'Premium',
+                    memberSince: 'Jan 2025'
+                };
+            }
+            hideAuthScreen();
+            showNotification('Welcome!', 'Logged in with Google', 'success');
+        }, 1000);
+    });
+    
+    googleRegister.addEventListener('click', () => {
+        showNotification('Google Sign Up', 'Redirecting to Google...', 'info');
+        
+        setTimeout(() => {
+            document.getElementById('loginTab').click();
+            showNotification('Success!', 'Account created with Google', 'success');
+        }, 1000);
+    });
+}
+
+// Forgot Password Modal
+function initForgotPassword() {
+    const forgotLink = document.getElementById('forgotPassword');
+    const forgotModal = document.getElementById('forgotModal');
+    const closeForgot = document.getElementById('closeForgot');
+    const sendResetBtn = document.getElementById('sendResetBtn');
+    
+    forgotLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        forgotModal.classList.add('active');
+    });
+    
+    closeForgot.addEventListener('click', () => {
+        forgotModal.classList.remove('active');
+    });
+    
+    sendResetBtn.addEventListener('click', () => {
+        const email = document.getElementById('resetEmail').value;
+        
+        if (!email) {
+            showNotification('Error', 'Please enter your email', 'error');
+            return;
+        }
+        
+        showNotification('Reset Link Sent', 'Check your email for instructions', 'success');
+        forgotModal.classList.remove('active');
+    });
+    
+    // Close modal when clicking outside
+    forgotModal.addEventListener('click', (e) => {
+        if (e.target === forgotModal) {
+            forgotModal.classList.remove('active');
+        }
+    });
+}
+
+// Update Profile UI after login
+function updateProfileUI() {
+    if (!window.AppState || !AppState.user) return;
+    
+    const user = AppState.user;
+    
+    // Update sidebar
+    document.querySelector('.user-info-sidebar h3').textContent = user.name;
+    document.querySelector('.user-info-sidebar p').textContent = user.email;
+    
+    // Update profile screen
+    document.querySelector('.profile-card h3').textContent = user.name;
+    document.querySelector('.profile-email').textContent = user.email;
+    document.querySelector('.profile-plan').textContent = user.plan + ' Member';
+    document.querySelector('.member-since').textContent = `Member since ${user.memberSince}`;
+    
+    // Update plan badge
+    document.querySelector('.plan-badge').textContent = user.plan;
+}
+
+// Check for saved login
+function checkSavedLogin() {
+    const savedEmail = localStorage.getItem('user_email');
+    if (savedEmail) {
+        document.getElementById('loginEmail').value = savedEmail;
+        document.getElementById('rememberMe').checked = true;
+    }
+}
+
+// Initialize all auth functions
+function initAuth() {
+    initAuthTabs();
+    initLogin();
+    initRegister();
+    initGoogleAuth();
+    initForgotPassword();
+    checkSavedLogin();
+    
+    // Show auth screen on app start (you can modify this based on your flow)
+    // showAuthScreen();
+}
+
+// Call this when you want to show auth (e.g., after onboarding)
+document.addEventListener('DOMContentLoaded', () => {
+    // ... your existing code ...
+    
+    // Uncomment to show auth after splash
+    // setTimeout(() => {
+    //     showAuthScreen();
+    // }, 3000);
+});
+
 // ========== ONBOARDING ==========
 function initOnboarding() {
     const slides = document.querySelectorAll('.onboarding-slide');
@@ -80,17 +428,21 @@ function initOnboarding() {
         }
     }
     
-    nextBtn.addEventListener('click', () => {
-        if (currentSlide < slides.length - 1) {
-            currentSlide++;
-            showSlide(currentSlide);
-        } else {
-            // Complete onboarding
-            localStorage.setItem('onboardingComplete', 'true');
-            onboarding.classList.add('hidden');
-            mainApp.classList.add('visible');
-        }
-    });
+    // In your existing initOnboarding function, change this part:
+nextBtn.addEventListener('click', () => {
+    if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        showSlide(currentSlide);
+    } else {
+        // Complete onboarding
+        localStorage.setItem('onboardingComplete', 'true');
+        onboarding.classList.add('hidden');
+        
+        // Show auth screen instead of main app
+        showAuthScreen(); // Add this line
+        // mainApp.classList.add('visible'); // Remove or comment this
+    }
+});
     
     skipBtn.addEventListener('click', () => {
         localStorage.setItem('onboardingComplete', 'true');
@@ -168,11 +520,31 @@ function initSidebar() {
 
 // ========== SCREEN NAVIGATION ==========
 function switchScreen(screenId) {
+    // If the requested screen is the separate full-page auth overlay, show it
+    if (screenId === 'auth' || screenId === 'authScreen') {
+        // Hide other .screen elements
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+
+        // Ensure main app is hidden and show the auth overlay
+        const authOverlay = document.getElementById('authScreen');
+        const mainApp = document.getElementById('mainApp');
+        if (mainApp) mainApp.classList.remove('visible');
+        if (authOverlay) authOverlay.classList.add('active');
+
+        // Update document title
+        document.title = `SEYTRONS - ${window.i18n ? window.i18n.translate('auth.title') : 'Sign In'}`;
+        return;
+    }
+
+    // Hide any open auth overlay when navigating to a normal screen
+    const authOverlay = document.getElementById('authScreen');
+    if (authOverlay) authOverlay.classList.remove('active');
+
     const screens = document.querySelectorAll('.screen');
     screens.forEach(screen => {
         screen.classList.remove('active');
     });
-    
+
     const targetScreen = document.getElementById(screenId);
     if (targetScreen) {
         targetScreen.classList.add('active');
@@ -827,6 +1199,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initSettings();
     initFAQ();
     initRateModal();
+    initAuth();
 
     // Common event bindings
     document.getElementById('logoutBtn')?.addEventListener('click', () => {
@@ -914,6 +1287,11 @@ function applyRuntimeTranslations() {
 if (window.i18n) {
     try { window.i18n.addListener(() => { applyRuntimeTranslations(); }); } catch (e) {}
 }
+
+// Auth initialization is implemented earlier (tabs, login/register flows)
+// The compact duplicate `initAuth()` was removed to avoid ID collisions and
+// ensure the overlay auth handlers (initAuthTabs, initLogin, initRegister, etc.)
+// are the active implementation.
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
