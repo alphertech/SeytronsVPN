@@ -1623,12 +1623,21 @@ const i18n = {
         if (languageSelect) {
             // Clear existing options
             languageSelect.innerHTML = '';
-            
-            // Populate language options
-            Object.entries(this.languages).forEach(([code, lang]) => {
+
+            // Populate language options only for languages that have translations
+            const availableTranslations = this.allTranslations ? Object.keys(this.allTranslations) : [];
+
+            // If no translations are loaded yet, fall back to keys in `languages`
+            const languagesToShow = availableTranslations.length ? availableTranslations : Object.keys(this.languages);
+
+            languagesToShow.forEach((code) => {
+                const meta = this.languages[code];
+                // skip if metadata for language doesn't exist
+                if (!meta) return;
+
                 const option = document.createElement('option');
                 option.value = code;
-                option.textContent = `${lang.flag} ${lang.name}`;
+                option.textContent = `${meta.flag} ${meta.name}`;
                 option.selected = this.currentLanguage === code;
                 languageSelect.appendChild(option);
             });

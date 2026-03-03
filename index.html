@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SEYTRONS - Secure & Private Network</title>
+    <title data-i18n="app.name">SEYTRONS - Secure & Private Network</title>
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,7 +41,7 @@
 
         <!-- SCREEN 2: ONBOARDING (3 Slides) -->
         <div class="onboarding-screen" id="onboardingScreen">
-            <button class="skip-btn" id="skipOnboarding">Skip</button>
+            <button class="skip-btn" id="skipOnboarding" data-i18n="common.skip">Skip</button>
 
             <div class="onboarding-slider" id="onboardingSlider">
                 <!-- Slide 1: Privacy -->
@@ -58,8 +58,8 @@
                     <div class="slide-icon">
                         <i class="fas fa-shield-halved"></i>
                     </div>
-                    <h2>Military-Grade Security</h2>
-                    <p>AES-256 encryption with strict no-logs policy. Your data stays yours.</p>
+                    <h2 data-i18n="onboarding.security_title">Military-Grade Security</h2>
+                    <p data-i18n="onboarding.security_desc">AES-256 encryption with strict no-logs policy. Your data stays yours.</p>
                 </div>
 
                 <!-- Slide 3: Speed -->
@@ -67,8 +67,8 @@
                     <div class="slide-icon">
                         <i class="fas fa-bolt"></i>
                     </div>
-                    <h2>Lightning Fast</h2>
-                    <p>24 servers worldwide with unlimited bandwidth. No speed caps.</p>
+                    <h2 data-i18n="onboarding.speed_title">Lightning Fast</h2>
+                    <p data-i18n="onboarding.speed_desc">24 servers worldwide with unlimited bandwidth. No speed caps.</p>
                 </div>
 
                 <!-- Slide 4: Get Started -->
@@ -76,8 +76,8 @@
                     <div class="slide-icon">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h2>Ready to Go?</h2>
-                    <p>Join millions who trust SEYTRONS for their online privacy.</p>
+                    <h2 data-i18n="onboarding.ready_title">Ready to Go?</h2>
+                    <p data-i18n="onboarding.ready_desc">Join millions who trust SEYTRONS for their online privacy.</p>
                 </div>
             </div>
 
@@ -89,7 +89,7 @@
             </div>
 
             <div class="onboarding-footer">
-                <button class="next-btn" id="nextOnboarding">Next</button>
+                <button class="next-btn" id="nextOnboarding" data-i18n="common.next">Next</button>
                 <div class="legal-links">
                     <a href="#">Terms</a>
                     <span>•</span>
@@ -107,7 +107,7 @@
                 <div class="sidebar-header">
                     <div class="logo">
                         <i class="fas fa-shield-halved"></i>
-                        <span>SEYTRONS</span>
+                        <span data-i18n="app.name">SEYTRONS</span>
                     </div>
                     <button class="close-sidebar" id="closeSidebar">
                         <i class="fas fa-times"></i>
@@ -122,7 +122,7 @@
                         <h3>Alex Morgan</h3>
                         <p>alex@email.com</p>
                     </div>
-                    <div class="plan-badge">Premium</div>
+                    <div class="plan-badge" data-i18n="profile.premium_member">Premium</div>
                 </div>
 
                 <nav class="sidebar-nav">
@@ -132,45 +132,46 @@
                     </a>
                     <a href="#servers" class="nav-item" data-screen="servers">
                         <i class="fas fa-server"></i>
-                        <span>Servers</span>
+                        <span data-i18n="servers.title">Servers</span>
                         <span class="badge">24</span>
                     </a>
                     <a href="#stats" class="nav-item" data-screen="stats">
                         <i class="fas fa-chart-simple"></i>
-                        <span>Statistics</span>
+                        <span data-i18n="stats.title">Statistics</span>
                     </a>
                     <a href="#profile" class="nav-item" data-screen="profile">
                         <i class="fas fa-user"></i>
-                        <span>Profile</span>
+                        <span data-i18n="profile.title">Profile</span>
                     </a>
                     <a href="#subscription" class="nav-item" data-screen="subscription">
                         <i class="fas fa-crown"></i>
-                        <span>Subscription</span>
+                        <span data-i18n="subscription.title">Subscription</span>
                     </a>
                     <a href="#settings" class="nav-item" data-screen="settings">
                         <i class="fas fa-gear"></i>
-                        <span>Settings</span>
+                        <span data-i18n="settings.title">Settings</span>
                     </a>
                     <a href="#support" class="nav-item" data-screen="support">
                         <i class="fas fa-headset"></i>
-                        <span>Support</span>
+                        <span data-i18n="support.title">Support</span>
                     </a>
                 </nav>
 
                 <div class="sidebar-footer">
                     <div class="storage-info">
                         <div class="storage-label">
-                            <span>Data Usage</span>
-                            <span>65GB / 100GB</span>
-                        </div>
+                                <span data-i18n="dashboard.data_usage">Data Usage</span>
+                                <span>65GB / 100GB</span>
+                            </div>
                         <div class="storage-bar">
                             <div class="storage-fill" style="width: 65%"></div>
                         </div>
                     </div>
-                    <button class="logout-btn" id="logoutBtn">
-                        <i class="fas fa-sign-out"></i>
-                        <span>Logout</span>
-                    </button>
+                    
+                        <button class="logout-btn" id="logoutBtn" data-i18n="profile.logout">
+                            <i class="fas fa-sign-out"></i>
+                            <span>Logout</span>
+                        </button>
                 </div>
             </aside>
 
@@ -184,7 +185,7 @@
 
                     <div class="header-logo">
                         <i class="fas fa-shield-halved"></i>
-                        <span>SEYTRONS</span>
+                        <span data-i18n="app.name">SEYTRONS</span>
                     </div>
 
                     <div class="header-actions">
@@ -225,8 +226,8 @@
                         <!-- Location Info Card -->
                         <div class="location-card">
                             <div class="location-header">
-                                <h3>Current Location</h3>
-                                <button class="change-location-btn" id="changeLocationBtn">Change</button>
+                                <h3 data-i18n="dashboard.current_location">Current Location</h3>
+                                    <button class="change-location-btn" id="changeLocationBtn" data-i18n="dashboard.change">Change</button>
                             </div>
 
                             <div class="location-info">
@@ -244,21 +245,21 @@
                         <!-- Quick Stats Card -->
                         <div class="quick-stats-card">
                             <div class="stats-header">
-                                <h3>Today's Usage</h3>
-                                <button class="view-all-btn" id="viewStatsBtn">Details</button>
+                                <h3 data-i18n="dashboard.todays_usage">Today's Usage</h3>
+                                <button class="view-all-btn" id="viewStatsBtn" data-i18n="dashboard.details">Details</button>
                             </div>
 
                             <div class="stats-grid">
                                 <div class="stat-item">
-                                    <span class="stat-label">Download</span>
+                                    <span class="stat-label" data-i18n="dashboard.download">Download</span>
                                     <span class="stat-value">1.2 GB</span>
                                 </div>
                                 <div class="stat-item">
-                                    <span class="stat-label">Upload</span>
+                                    <span class="stat-label" data-i18n="dashboard.upload">Upload</span>
                                     <span class="stat-value">0.3 GB</span>
                                 </div>
                                 <div class="stat-item">
-                                    <span class="stat-label">Top Speed</span>
+                                    <span class="stat-label" data-i18n="dashboard.top_speed">Top Speed</span>
                                     <span class="stat-value">287 Mbps</span>
                                 </div>
                             </div>
@@ -267,8 +268,8 @@
                         <!-- Popular Servers -->
                         <div class="servers-section">
                             <div class="section-header">
-                                <h3>Popular Servers</h3>
-                                <button class="view-all-btn" id="viewAllServers">View All</button>
+                                <h3 data-i18n="dashboard.popular_servers">Popular Servers</h3>
+                                <button class="view-all-btn" id="viewAllServers" data-i18n="dashboard.view_all">View All</button>
                             </div>
 
                             <div class="horizontal-server-list" id="popularServers">
@@ -284,15 +285,15 @@
                             </a>
                             <a href="#" class="nav-item" data-screen="servers">
                                 <i class="fas fa-server"></i>
-                                <span>Servers</span>
+                                <span data-i18n="servers.title">Servers</span>
                             </a>
                             <a href="#" class="nav-item" data-screen="stats">
                                 <i class="fas fa-chart-simple"></i>
-                                <span>Stats</span>
+                                <span data-i18n="stats.title">Stats</span>
                             </a>
                             <a href="#" class="nav-item" data-screen="profile">
                                 <i class="fas fa-user"></i>
-                                <span>Profile</span>
+                                <span data-i18n="profile.title">Profile</span>
                             </a>
                         </nav>
                     </div>
@@ -303,7 +304,7 @@
                             <button class="back-btn" data-back="dashboard">
                                 <i class="fas fa-arrow-left"></i>
                             </button>
-                            <h2>Servers</h2>
+                            <h2 data-i18n="servers.title">Servers</h2>
                             <div class="header-actions">
                                 <button class="search-toggle" id="searchToggle">
                                     <i class="fas fa-search"></i>
@@ -317,7 +318,7 @@
                         <!-- Search Bar (Expandable) -->
                         <div class="search-bar" id="searchBar">
                             <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Search servers..." id="serverSearch">
+                            <input type="text" id="serverSearch" data-i18n-placeholder="servers.search">
                             <button class="clear-search" id="clearSearch">
                                 <i class="fas fa-times"></i>
                             </button>
@@ -325,14 +326,14 @@
 
                         <!-- Filter Chips -->
                         <div class="filter-chips" id="filterChips">
-                            <input type="text" id="serverSearch" data-i18n-placeholder="servers.search">
+                            <input type="text" id="serverFilterSearch" data-i18n-placeholder="servers.search">
                             <button class="chip active" data-filter="all" data-i18n="servers.all">All</button>
                             <button class="chip" data-filter="recommended" data-i18n="servers.recommended">Recommended</button>
-                            <button class="chip" data-filter="fastest">Fastest</button>
-                            <button class="chip" data-filter="favorites">Favorites</button>
-                            <button class="chip" data-filter="europe">Europe</button>
-                            <button class="chip" data-filter="asia">Asia</button>
-                            <button class="chip" data-filter="americas">Americas</button>
+                            <button class="chip" data-filter="fastest" data-i18n="servers.fastest">Fastest</button>
+                            <button class="chip" data-filter="favorites" data-i18n="servers.favorites">Favorites</button>
+                            <button class="chip" data-filter="europe" data-i18n="servers.europe">Europe</button>
+                            <button class="chip" data-filter="asia" data-i18n="servers.asia">Asia</button>
+                            <button class="chip" data-filter="americas" data-i18n="servers.americas">Americas</button>
                         </div>
 
                         <!-- Server List -->
@@ -347,8 +348,8 @@
                             <button class="back-btn" data-back="dashboard">
                                 <i class="fas fa-arrow-left"></i>
                             </button>
-                            <h2>Statistics</h2>
-                            <button class="export-btn" id="exportStats">
+                            <h2 data-i18n="stats.title">Statistics</h2>
+                            <button class="export-btn" id="exportStats" data-i18n-title="stats.export">
                                 <i class="fas fa-share"></i>
                             </button>
                         </div>
@@ -360,7 +361,7 @@
                                     <i class="fas fa-download"></i>
                                 </div>
                                 <div class="summary-info">
-                                    <span class="summary-label">Total Downloaded</span>
+                                    <span class="summary-label" data-i18n="stats.total_download">Total Downloaded</span>
                                     <span class="summary-value">45.2 GB</span>
                                 </div>
                             </div>
@@ -370,7 +371,7 @@
                                     <i class="fas fa-upload"></i>
                                 </div>
                                 <div class="summary-info">
-                                    <span class="summary-label">Total Uploaded</span>
+                                    <span class="summary-label" data-i18n="stats.total_upload">Total Uploaded</span>
                                     <span class="summary-value">12.8 GB</span>
                                 </div>
                             </div>
@@ -380,7 +381,7 @@
                                     <i class="fas fa-clock"></i>
                                 </div>
                                 <div class="summary-info">
-                                    <span class="summary-label">Connection Time</span>
+                                    <span class="summary-label" data-i18n="stats.connection_time">Connection Time</span>
                                     <span class="summary-value">127h 32m</span>
                                 </div>
                             </div>
@@ -388,7 +389,7 @@
 
                         <!-- Daily Usage Chart -->
                         <div class="chart-card">
-                            <h3>Daily Usage (Last 7 Days)</h3>
+                            <h3 data-i18n="stats.daily_usage">Daily Usage (Last 7 Days)</h3>
                             <div class="bar-chart" id="dailyChart">
                                 <!-- Will be populated by JS -->
                             </div>
@@ -396,7 +397,7 @@
 
                         <!-- Connection History -->
                         <div class="history-card">
-                            <h3>Recent Connections</h3>
+                            <h3 data-i18n="stats.recent_connections">Recent Connections</h3>
                             <div class="history-list" id="connectionHistory">
                                 <!-- Will be populated by JS -->
                             </div>
@@ -659,11 +660,7 @@
                                     <h4>Language</h4>
                                     <p>Select your language</p>
                                 </div>
-                                <select class="setting-select" id="languageSelect">
-                                    <option>English</option>
-                                    <option>Spanish</option>
-                                    <option>French</option>
-                                    <option>German</option>
+                                <select class="setting-select" id="languageSelect" aria-label="Language" data-i18n-title="settings.language_desc">
                                 </select>
                             </div>
                         </div>
