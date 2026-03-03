@@ -1,0 +1,7 @@
+Flask==2.3.3
+Flask-CORS==4.0.0
+cryptography==41.0.7
+psutil==5.9.6
+ping3==4.0.4
+python-ping==1.1.1
+requests==2.31.0

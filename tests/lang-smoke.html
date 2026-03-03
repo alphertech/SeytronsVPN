@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>I18n Smoke Test</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+  <h1>SEYTRONS I18n Smoke Test</h1>
+  <div id="result">Running...</div>
+
+  <script src="services/i18n.js"></script>
+  <script>
+    async function runTest() {
+      // wait for i18n to initialize
+      if (!window.i18n) {
+        document.getElementById('result').textContent = 'i18n not loaded';
+        return;
+      }
+
+      await window.i18n.init();
+
+      // Ensure languageSelect exists
+      const select = document.getElementById('languageSelect');
+      const hasSelect = !!select;
+
+      // Pick a language that exists (try 'es')
+      const target = window.i18n.languages['es'] ? 'es' : Object.keys(window.i18n.languages)[0];
+
+      window.i18n.changeLanguage(target);
+
+      // Give UI a moment to update
+      setTimeout(() => {
+        const expected = window.i18n.translate('splash.initializing');
+        // If translation present in DOM (index.html must be open for full test).
+        const pass = expected && typeof expected === 'string';
+        document.getElementById('result').textContent = `languageSelect:${hasSelect} target:${target} expected:${expected}`;
+      }, 400);
+    }
+
+    runTest();
+  </script>
+</body>
+</html>

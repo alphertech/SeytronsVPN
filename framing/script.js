@@ -1,3 +1,22 @@
+// ========== GLOBAL APP STATE ==========
+window.AppState = window.AppState || {
+    connection: {
+        isConnected: false,
+        isConnecting: false,
+        currentServer: null,
+        startTime: null,
+        bytesDownloaded: 0,
+        bytesUploaded: 0,
+        ipAddress: null
+    },
+    settings: {
+        protocol: 'WireGuard',
+        killSwitch: true,
+        darkMode: true
+    },
+    servers: []
+};
+
 // ========== SPLASH SCREEN ==========
 function initSplashScreen() {
     const splash = document.getElementById('splashScreen');
@@ -10,11 +29,11 @@ function initSplashScreen() {
         progress += 10;
         
         if (progress <= 30) {
-            splashStatus.textContent = 'Initializing...';
+            splashStatus.textContent = window.i18n ? window.i18n.translate('splash.initializing') : 'Initializing...';
         } else if (progress <= 60) {
-            splashStatus.textContent = 'Loading servers...';
+            splashStatus.textContent = window.i18n ? window.i18n.translate('splash.loading_servers') : 'Loading servers...';
         } else if (progress <= 90) {
-            splashStatus.textContent = 'Almost ready...';
+            splashStatus.textContent = window.i18n ? window.i18n.translate('splash.almost_ready') : 'Almost ready...';
         }
         
         if (progress >= 100) {
@@ -53,11 +72,11 @@ function initOnboarding() {
         slides[index].classList.add('active');
         dots[index].classList.add('active');
         
-        // Change button text on last slide
+        // Change button text on last slide (use i18n)
         if (index === slides.length - 1) {
-            nextBtn.textContent = 'Get Started';
+            nextBtn.textContent = window.i18n ? window.i18n.translate('common.done') : 'Get Started';
         } else {
-            nextBtn.textContent = 'Next';
+            nextBtn.textContent = window.i18n ? window.i18n.translate('common.next') : 'Next';
         }
     }
     
@@ -275,8 +294,8 @@ function initVPNConnection() {
         isConnecting = true;
         powerButton.classList.remove('disconnected', 'connected');
         powerButton.classList.add('connecting');
-        connectionMainStatus.textContent = 'Connecting...';
-        connectionSubStatus.textContent = 'Establishing secure tunnel';
+        connectionMainStatus.textContent = window.i18n ? window.i18n.translate('dashboard.connecting') : 'Connecting...';
+        connectionSubStatus.textContent = window.i18n ? window.i18n.translate('common.loading') : 'Establishing secure tunnel';
         
         connectingModal.classList.add('active');
         
@@ -292,8 +311,8 @@ function initVPNConnection() {
         
         powerButton.classList.remove('connecting');
         powerButton.classList.add('connected');
-        connectionMainStatus.textContent = 'Connected';
-        connectionSubStatus.textContent = 'Your data is secure';
+        connectionMainStatus.textContent = window.i18n ? window.i18n.translate('dashboard.connected') : 'Connected';
+        connectionSubStatus.textContent = window.i18n ? window.i18n.translate('dashboard.secure') : 'Your data is secure';
         
         connectingModal.classList.remove('active');
         startTimer();
@@ -317,8 +336,8 @@ function initVPNConnection() {
         
         powerButton.classList.remove('connected', 'connecting');
         powerButton.classList.add('disconnected');
-        connectionMainStatus.textContent = 'Disconnected';
-        connectionSubStatus.textContent = 'Your data is at risk';
+        connectionMainStatus.textContent = window.i18n ? window.i18n.translate('dashboard.disconnected') : 'Disconnected';
+        connectionSubStatus.textContent = window.i18n ? window.i18n.translate('dashboard.at_risk') : 'Your data is at risk';
         
         disconnectModal.classList.remove('active');
         stopTimer();
@@ -536,8 +555,12 @@ function connectToServer(country) {
     const connectingModal = document.getElementById('connectingModal');
     const connectingServer = document.getElementById('connectingServer');
     
-    // Update connecting message
-    connectingServer.textContent = `to ${country}`;
+    // Update connecting message (localized)
+    if (window.i18n) {
+        connectingServer.textContent = window.i18n.translate('modals.connecting.to', { server: country });
+    } else {
+        connectingServer.textContent = `to ${country}`;
+    }
     
     // Show connecting modal
     connectingModal.classList.add('active');
@@ -779,7 +802,20 @@ function initRateModal() {
 
 
 // ========== INITIALIZE ALL ==========
-document.addEventListener('DOMContentLoaded', () => {
+// Single DOMContentLoaded: initialize i18n then app
+document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize i18n if available
+    if (window.i18n && typeof window.i18n.init === 'function') {
+        try { await window.i18n.init(); } catch (e) { console.warn('i18n init failed', e); }
+        // Apply translations for static attributes
+        try { window.i18n.translateUI(); } catch (e) {}
+        // Populate languageSelect in settings
+        try { window.i18n.setupLanguageSelector(); } catch (e) {}
+        // Listen for language changes to update runtime text
+        try { window.i18n.addListener(() => updateDynamicContent()); } catch (e) {}
+    }
+
+    // Initialize UI components
     initSplashScreen();
     initOnboarding();
     initSidebar();
@@ -791,114 +827,53 @@ document.addEventListener('DOMContentLoaded', () => {
     initSettings();
     initFAQ();
     initRateModal();
-    
-    // Handle logout
+
+    // Common event bindings
     document.getElementById('logoutBtn')?.addEventListener('click', () => {
         localStorage.removeItem('onboardingComplete');
         location.reload();
     });
-    
-    // View all servers from dashboard
-    document.getElementById('viewAllServers')?.addEventListener('click', () => {
-        switchScreen('servers');
-    });
-    
-    // View stats from dashboard
-    document.getElementById('viewStatsBtn')?.addEventListener('click', () => {
-        switchScreen('stats');
-    });
-    
-    // Split tunnel info
+
+    document.getElementById('viewAllServers')?.addEventListener('click', () => switchScreen('servers'));
+    document.getElementById('viewStatsBtn')?.addEventListener('click', () => switchScreen('stats'));
+
     document.getElementById('splitTunnelInfo')?.addEventListener('click', () => {
         const premiumModal = document.getElementById('premiumModal');
         premiumModal.classList.add('active');
-        
-        setTimeout(() => {
-            premiumModal.classList.remove('active');
-        }, 3000);
+        setTimeout(() => premiumModal.classList.remove('active'), 3000);
     });
-    
-    // Close premium modal
-    document.getElementById('closePremiumModal')?.addEventListener('click', () => {
-        document.getElementById('premiumModal').classList.remove('active');
-    });
-    
-    // Upgrade now
-    document.getElementById('upgradeNow')?.addEventListener('click', () => {
-        document.getElementById('premiumModal').classList.remove('active');
-        switchScreen('subscription');
-    });
-    
-    // Copy referral code
+
+    document.getElementById('closePremiumModal')?.addEventListener('click', () => document.getElementById('premiumModal').classList.remove('active'));
+
+    document.getElementById('upgradeNow')?.addEventListener('click', () => { document.getElementById('premiumModal').classList.remove('active'); switchScreen('subscription'); });
+
     document.querySelector('.copy-code')?.addEventListener('click', () => {
         const code = document.querySelector('.referral-code span').textContent;
         navigator.clipboard.writeText(code).then(() => {
-            addNotification('Copied', 'Referral code copied to clipboard');
+            addNotification(window.i18n ? window.i18n.translate('common.copied') || 'Copied' : 'Copied', 'Referral code copied to clipboard');
         });
     });
-    
-    // Search toggle in servers screen
+
     document.getElementById('searchToggle')?.addEventListener('click', () => {
         const searchBar = document.getElementById('searchBar');
         searchBar.style.display = searchBar.style.display === 'none' ? 'flex' : 'none';
     });
-    
-    // Filter toggle in servers screen
+
     document.getElementById('filterToggle')?.addEventListener('click', () => {
         const filterChips = document.getElementById('filterChips');
         filterChips.style.display = filterChips.style.display === 'none' ? 'flex' : 'none';
     });
-    
-    // Export stats
-    document.getElementById('exportStats')?.addEventListener('click', () => {
-        addNotification('Export', 'Statistics exported successfully');
-    });
-    
-    // Edit profile
-    document.getElementById('editProfile')?.addEventListener('click', () => {
-        addNotification('Profile', 'Edit profile feature coming soon');
-    });
-    
-    // Select plan buttons
-    document.querySelectorAll('.select-plan').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const plan = btn.closest('.plan-card');
-            const planName = plan.querySelector('h4').textContent;
-            addNotification('Plan Selected', `${planName} plan selected`);
-        });
-    });
-    
+
+    document.getElementById('exportStats')?.addEventListener('click', () => { addNotification('Export', 'Statistics exported successfully'); });
+    document.getElementById('editProfile')?.addEventListener('click', () => { addNotification('Profile', 'Edit profile feature coming soon'); });
+
+    document.querySelectorAll('.select-plan').forEach(btn => btn.addEventListener('click', () => {
+        const plan = btn.closest('.plan-card');
+        const planName = plan.querySelector('h4').textContent;
+        addNotification('Plan Selected', `${planName} plan selected`);
+    }));
+
     console.log('SEYTRONS VPN initialized successfully');
-});
-// In your DOMContentLoaded event
-document.addEventListener('DOMContentLoaded', async () => {
-    // Initialize i18n first
-    await i18n.init();
-    
-    // Translate UI
-    i18n.translateUI();
-    
-    // Initialize language selector
-    i18n.renderLanguageSelector('language-selector-container');
-    
-    // Initialize other components
-    initSplashScreen();
-    initOnboarding();
-    initSidebar();
-    initNavigation();
-    initVPNConnection();
-    initServers();
-    initStatistics();
-    initNotifications();
-    initSettings();
-    initFAQ();
-    initRateModal();
-    
-    // Listen for language changes
-    i18n.addListener((lang, translations) => {
-        // Re-translate dynamic content
-        updateDynamicContent();
-    });
 });
 
 // Function to update dynamic content that's not in data-i18n attributes
@@ -906,11 +881,38 @@ function updateDynamicContent() {
     // Update server list items
     document.querySelectorAll('.server-item').forEach(item => {
         const connectBtn = item.querySelector('.connect-server-btn');
-        connectBtn.textContent = i18n.translate('servers.connect');
+        if (window.i18n) connectBtn.textContent = window.i18n.translate('servers.connect');
     });
     
     // Update connection timer formatting if needed
     // etc.
+}
+
+// Also update some other dynamic texts used in the app
+function applyRuntimeTranslations() {
+    // Splash
+    const splashStatus = document.getElementById('splashStatus');
+    if (splashStatus && window.i18n) splashStatus.textContent = window.i18n.translate('splash.initializing');
+
+    // Connection statuses
+    const connectionMainStatus = document.getElementById('connectionMainStatus');
+    const connectionSubStatus = document.getElementById('connectionSubStatus');
+    if (connectionMainStatus && window.i18n) {
+        // Only update if current value is one of known states
+        const val = connectionMainStatus.textContent || '';
+        if (/Connect|Disconnect|Connecting|Connected|Disconnected/i.test(val)) {
+            // keep current state but translate keys where possible
+            if (val.toLowerCase().includes('connect')) connectionMainStatus.textContent = window.i18n.translate('dashboard.connected');
+        }
+    }
+
+    // Update any other dynamic texts
+    updateDynamicContent();
+}
+
+// Ensure runtime translations applied after language load
+if (window.i18n) {
+    try { window.i18n.addListener(() => { applyRuntimeTranslations(); }); } catch (e) {}
 }
 
 if ('serviceWorker' in navigator) {
